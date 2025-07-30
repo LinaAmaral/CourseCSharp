@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using Course.Entities;
 using Course.Entities.Enums;
 using System.IO;
-
+using Course.Services;
 
 
 namespace Course
@@ -319,101 +319,214 @@ namespace Course
             //}
 
 
+            //Seçaõ 11 - aula 131 FileStream e StreamReader
+
+            /*
             //FILE STREAM: Disponibiliza uma stream associada a um arquivo, permitindo operações de leitura e escrita (é uma stream binária) (acessa o recurso de entrada e saída)
             //Encapsula a sequencia de leitura/escrita em um recurso entrada/saída (vulgo arquivo).
-
             //STREAM READER: Converte de texto para binário e vice-versa. Ele pega esse stream disponibilizado pelo file stream e converte para texto. (tenho o recurso otimizado para o que eu quero)
 
-            //string path = @"C:\EstudoProgramacao\c_sharp\file1.txt";
-            //FileStream fs = null;
-            //StreamReader sr = null;
+            string path = @"C:\EstudoProgramacao\c_sharp\file1.txt";
+            FileStream fs = null;
+            StreamReader sr = null;
 
-            //try
-            //{
-            //    fs = new FileStream(path, FileMode.Open);
-            //    sr = new StreamReader(fs);
-            //    string line = sr.ReadLine();
-            //    Console.Write(line);
-            //}
-            //catch (IOException e)
-            //{
-            //    Console.WriteLine("An error accurred");
-            //    Console.WriteLine(e.Message);
-            //}
-            //finally
-            //{
-            //    if (sr != null) sr.Close();
-            //    if (fs != null) fs.Close();
-            //}
+            try
+            {
+                fs = new FileStream(path, FileMode.Open);
+                sr = new StreamReader(fs);
+                string line = sr.ReadLine();
+                Console.Write(line);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error accurred");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (sr != null) sr.Close();
+                if (fs != null) fs.Close();
+            }
+            
 
             //uma outra forma de fazer, pra não precisar instanciar o filestream e o streamreader: sr = File.OpenText(path); Esse cara já instancia os dois de cima
 
-            //try
-            //{
-            //    sr = File.OpenText(path);
-            //    while (!sr.EndOfStream) //lendo todo o arquivo
-            //    {
-            //        string line = sr.ReadLine();
-            //        Console.WriteLine(line);
-            //    }
-            //}
-            //catch (IOException e)
-            //{
-            //    Console.WriteLine("An error occurred");
-            //    Console.WriteLine(e.Message);
-            //}
-            //finally
-            //{
-            //    if (sr != null) sr.Close();
-            //}
+            try
+            {
+                sr = File.OpenText(path);
+                while (!sr.EndOfStream) //lendo todo o arquivo
+                {
+                    string line = sr.ReadLine();
+                    Console.WriteLine(line);
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (sr != null) sr.Close();
+            }
 
             //BLOCO USING : Quando lidamos com essas coisas que não são gerenciadas pelo CLI do .NET precisamos fechar (bloco finaliy), com o using isso é fechado automaticamente
 
-            //try {
-            //    using (StreamReader sr = File.OpenText(path))
-            //    {
-            //        while (!sr.EndOfStream)
-            //        {
-            //            string line = sr.ReadLine();
-            //            Console.WriteLine(line);
+            try
+            {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occrred");
+                Console.WriteLine(e.Message);
+            }
+            */
 
-            //        }
-            //    }
-            //}catch(IOException e)
-            //{
-            //    Console.WriteLine("An error occrred");
-            //    Console.WriteLine(e.Message);
-            //}
+            //Seção 11 - aula 133 Stream Write: Usado para escrever arquivos
 
-            //STREAM WRITER : Usado para escrever arquivos.
+            /*
+            string sourcePath = @"C:\EstudoProgramacao\c_sharp\file1.txt";
+            string targetPath = @"C:\EstudoProgramacao\c_sharp\file3.txt";
 
-            //string sourcePath = @"C:\EstudoProgramacao\c_sharp\file1.txt";
-            //string targetPath = @"C:\EstudoProgramacao\c_sharp\file3.txt";
+            try
+            {
+                string[] lines = File.ReadAllLines(sourcePath);
+                using (StreamWriter sw = File.AppendText(targetPath))
+                {
+                    foreach (string line in lines)
+                    {
+                        sw.WriteLine(line.ToUpper());
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }
+            */
 
-            //try
-            //{
-            //    string[] lines = File.ReadAllLines(sourcePath);
-            //    using (StreamWriter sw = File.AppendText(targetPath))
-            //    {
-            //        foreach (string line in lines)
-            //        {
-            //            sw.WriteLine(line.ToUpper());
-            //        }
-            //    }
-            //}
-            //catch (IOException e)
-            //{
-            //    Console.WriteLine("An error occurred");
-            //    Console.WriteLine(e.Message);
+            //Seção 11 - aula 134 Directory e DirectoryInfo
 
-            //}
+            /*
+            //DIRECTORY  (Estático) E DIRECTORYINFO (Instancia) = Operações com pastas
+             
+            string path = @"C:\CombinandoCores";
+            try
+            {
+                var folders = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories);
+                Console.WriteLine("Folders: ");
+                foreach(string s in folders){
+                    Console.WriteLine(s);
+                }
 
-            //DIRECTORY  (Estático) E DIRECTORYINFO (Instancia) = Segue a  
+                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories);
+                Console.WriteLine("Files: ");
+                foreach (string f in files)
+                {
+                    Console.WriteLine(f);
+                }
+            }
+            catch( IOException e)
+            {
+                Console.WriteLine("Ocorreu um erro");
+                Console.WriteLine(e.Message);
+            }*/
+
+            //Seção 11 - aula 135 Path
+
+            /*
+            //Path - realiza operações com string que contenham caminhos de pastas ou arquivos.
+
+            string path = @"C:\Estudo Investimentos\Notas de negociação\_STVM_1207616_005484215_2684942_202535_1741206312768.pdf__assinado.pdf";
+
+            Console.WriteLine("GetFileName: " + Path.GetFileName(path));
+            Console.WriteLine("GetFileNameWithoutExtension: " + Path.GetFileNameWithoutExtension(path));
+            Console.WriteLine("GetExtension: " + Path.GetExtension(path));
+            */
+
+            //Seção 11 - aula 136 Exercício de fixação
+
+            /*string sourceFile = @"C:\EstudoProgramacao\c_sharp\sourceFile.txt";
+
+            try
+            {                         
+                string[] lines = File.ReadAllLines(sourceFile);
+                string sourceFolderPath = Path.GetDirectoryName(sourceFile);
+
+                string targetFolderPath = sourceFolderPath + @"\out";
+                string targetFilePath = targetFolderPath + @"\summary.csv";
+                Directory.CreateDirectory(targetFolderPath);
+
+                using (StreamWriter sw = File.AppendText(targetFilePath))
+                {
+                    foreach (string line in lines)
+                    {
+
+                        string[] fields = line.Split(',');
+                        string name = fields[0];
+                        double price = double.Parse(fields[1], CultureInfo.InvariantCulture);
+                        int quantity = int.Parse(fields[2]);
+
+                        Product2 prod = new Product2(name, price, quantity);
+
+                        sw.WriteLine(prod.Name + ";" + prod.Total().ToString("F2", CultureInfo.InvariantCulture));
+                    }
+                }
 
 
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("An error occurred");
+                Console.WriteLine(e.Message);
+            }*/
 
+            //Seção 12 - aula 139 Interfaces
 
+            Console.WriteLine("Enter rental data");
+
+            Console.Write("Car model: ");
+            string model = Console.ReadLine();
+
+            Console.Write("Pickup (dd/MM/yyyy HH:mm): ");
+            DateTime start = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+
+            Console.Write("Return (dd/MM/yyyy HH:mm): ");
+            DateTime finish = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+
+            Console.Write("Enter price per hour: ");
+            double hour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            Console.Write("Enter price per day: ");
+            double day = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            CarRental carRental = new CarRental(start, finish, new Vehicle(model));
             
+            RentalService rentalService = new RentalService(hour, day, new BrazilTaxService());
+            rentalService.ProcessInvoice(carRental);
+
+            Console.WriteLine("INVOICE:");
+            Console.WriteLine(carRental.Invoice);
+
+
+
+
+
+
+
+
+
+
+
 
 
 
