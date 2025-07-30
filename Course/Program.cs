@@ -492,6 +492,7 @@ namespace Course
 
             //Seção 12 - aula 139 Interfaces
 
+            /*
             Console.WriteLine("Enter rental data");
 
             Console.Write("Car model: ");
@@ -516,8 +517,23 @@ namespace Course
 
             Console.WriteLine("INVOICE:");
             Console.WriteLine(carRental.Invoice);
+            */
 
+            //Seção 12 - aula 143 - Exercício de fixação
 
+            Console.WriteLine("Entre com o número do contrato: ");
+            int numeroContrato = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Entre com a data do contrato (dd/MM/yyyy): ");
+            DateTime dataContrato = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Entre com o valor do contrato: ");
+            double valorContrato = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Entre com a quantidade de parcelas: ");
+            int quantParcelas = int.Parse(Console.ReadLine());
+
+            Contrato contrato = new Contrato(numeroContrato, dataContrato, quantParcelas);
 
 
 
