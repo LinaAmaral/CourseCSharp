@@ -1,14 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Globalization;
 
 namespace Course.Entities
 {
     class Parcela
     {
-        public DateTime DataPagamento { get; set; }
+        public DateOnly DataPagamento { get; set; }
         public double ValorParcela { get; set; }
+
+        public Parcela(DateOnly dataPagamento, double valorParcela)
+        {
+            DataPagamento = dataPagamento;
+            ValorParcela = valorParcela;
+        }
+
+        public override string ToString()
+        {
+            return DataPagamento.ToString("dd/MM/yyyy") + " - " + ValorParcela.ToString("F2", CultureInfo.InvariantCulture);
+        }
     }
 }

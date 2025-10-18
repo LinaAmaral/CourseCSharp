@@ -539,19 +539,31 @@ namespace Course
 
             //Seção 12 - aula 143 - Exercício de fixação
 
-            Console.WriteLine("Entre com o número do contrato: ");
+            Console.Write("Entre com o número do contrato: ");
             int numeroContrato = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Entre com a data do contrato (dd/MM/yyyy): ");
-            DateTime dataContrato = DateTime.Parse(Console.ReadLine());
+            Console.Write("Entre com a data do contrato (dd/MM/yyyy): ");
+            DateOnly dataContrato = DateOnly.Parse(Console.ReadLine());
 
-            Console.WriteLine("Entre com o valor do contrato: ");
+            Console.Write("Entre com o valor do contrato: ");
             double valorContrato = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Entre com a quantidade de parcelas: ");
+            Console.Write("Entre com a quantidade de parcelas: ");
             int quantParcelas = int.Parse(Console.ReadLine());
 
-            Contrato contrato = new Contrato(numeroContrato, dataContrato, quantParcelas);
+
+
+            Contrato contrato = new Contrato(numeroContrato, dataContrato, valorContrato);
+            ContratoService contratoService = new ContratoService(new PaypalService());
+            contratoService.ProcessarContrato(contrato, quantParcelas);
+
+            Console.WriteLine("Valor a ser paga das parcelas:");
+            foreach(Parcela parcela in contrato.Parcelas)
+            {
+                Console.WriteLine(parcela);
+            }
+
+
 
 
 
