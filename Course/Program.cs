@@ -567,10 +567,18 @@ namespace Course
 
             //Seção 12 - aula 144 - Diferença entre herdar e cumprir contrato
 
-            IShape circulo = new Circle() { Color = "Branca", Radius = 2 };
+            /*IShape circulo = new Circle() { Color = "Branca", Radius = 2 };
             IShape retangulo = new Rectangle() { Color = "Preta", Largula = 3, Altura = 2 };
             Console.WriteLine(circulo);
-            Console.WriteLine(retangulo);
+            Console.WriteLine(retangulo);*/
+
+            //Seção 12 - aula 145 - Herança múltipla e problema do diamante
+
+            //Não é possível fazer herança múltipla, porque teríamos ambiguidade. Um método com múltiplas implementações.
+            //Tem que refatorar a estrutura, para uma classe herdar da outra, e implementar as duas interfaces.
+            //Estou herdando de uma classe e implementando duas interfaces
+
+            
 
 
 
