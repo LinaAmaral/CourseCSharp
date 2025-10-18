@@ -5,6 +5,7 @@ using Course.Entities;
 using Course.Entities.Enums;
 using System.IO;
 using Course.Services;
+using Course.Entities.Model;
 
 
 namespace Course
@@ -539,7 +540,7 @@ namespace Course
 
             //Seção 12 - aula 143 - Exercício de fixação
 
-            Console.Write("Entre com o número do contrato: ");
+            /*Console.Write("Entre com o número do contrato: ");
             int numeroContrato = int.Parse(Console.ReadLine());
 
             Console.Write("Entre com a data do contrato (dd/MM/yyyy): ");
@@ -561,9 +562,15 @@ namespace Course
             foreach(Parcela parcela in contrato.Parcelas)
             {
                 Console.WriteLine(parcela);
-            }
+            }*/
 
 
+            //Seção 12 - aula 144 - Diferença entre herdar e cumprir contrato
+
+            IShape circulo = new Circle() { Color = "Branca", Radius = 2 };
+            IShape retangulo = new Rectangle() { Color = "Preta", Largula = 3, Altura = 2 };
+            Console.WriteLine(circulo);
+            Console.WriteLine(retangulo);
 
 
 

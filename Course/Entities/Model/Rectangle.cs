@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Course.Entities.Model
 {
-    class Rectangle : Shape
+    class Rectangle : AbstractShape
     {
         public double Altura { get; set; }
         public double Largula { get; set; }
