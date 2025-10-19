@@ -578,7 +578,36 @@ namespace Course
             //Tem que refatorar a estrutura, para uma classe herdar da outra, e implementar as duas interfaces.
             //Estou herdando de uma classe e implementando duas interfaces
 
-            
+            //Seção 12 - aula 146 - Interface IComparable
+            //Serve para comparar um objeto com o outro. Pra dizer se é maior, menor ou igual ao outro
+            //Quando li string consegui comparar pq a classe string já implementa a interface IComparable, mas quando passei a comparar funcionário, precisei implementar a interface em funcionário e fazer a lógica de comparação que eu aplicaria
+            // Quando ele chamar o sort, ele vai usar esse método que implementei em funcionário    
+
+            /*string path = @"C:\EstudoProgramacao\c_sharp\listaNome.txt";
+
+            try
+            {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    List<Funcionario> list = new List<Funcionario>();
+                    while (!sr.EndOfStream)
+                    {
+                        list.Add(new Funcionario(sr.ReadLine()));
+                    }
+                    list.Sort();
+                    foreach (Funcionario funcionario in list)
+                    {
+                        Console.WriteLine(funcionario);
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Ocorreu um erro", e.Message);
+            }*/
+
+
+
 
 
 
