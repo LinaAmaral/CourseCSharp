@@ -607,7 +607,23 @@ namespace Course
             }*/
 
 
+            //Seção 13 - aula 148 - Generics
+            //Como essa classe foi criada do tipo generic <T>, na hora que eu instancio eu escolho o tipo
+            //Assim posso usar tanto para string, como para int, por exemplo. Forma de reaproveitamento
 
+            PrintService<int> printService = new PrintService<int>();
+
+            Console.Write(" Quantos números deseja ler? ");
+            int n = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i<n; i++)
+            {
+                int x = int.Parse(Console.ReadLine());
+                printService.AddValue(x);
+            }
+
+            printService.Print();
+            Console.WriteLine("First: " + printService.Firt());
 
 
 
