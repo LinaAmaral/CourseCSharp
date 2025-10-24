@@ -611,7 +611,7 @@ namespace Course
             //Como essa classe foi criada do tipo generic <T>, na hora que eu instancio eu escolho o tipo
             //Assim posso usar tanto para string, como para int, por exemplo. Forma de reaproveitamento
 
-            PrintService<int> printService = new PrintService<int>();
+            /*PrintService<int> printService = new PrintService<int>();
 
             Console.Write(" Quantos números deseja ler? ");
             int n = int.Parse(Console.ReadLine());
@@ -623,7 +623,29 @@ namespace Course
             }
 
             printService.Print();
-            Console.WriteLine("First: " + printService.Firt());
+            Console.WriteLine("First: " + printService.Firt());*/
+
+
+            //Seção 13 - aula 150 - Restrição aos generics
+
+            List<Produto> list = new List<Produto>();
+
+            Console.Write("Entre com n: ");
+            int n = int.Parse(Console.ReadLine());
+
+
+            for (int i = 0; i < n; i++)
+            {
+                string[] vect = Console.ReadLine().Split(',');
+                double preco = double.Parse(vect[1], CultureInfo.InvariantCulture);
+                list.Add(new Produto(vect[0], preco));
+            }
+
+            CalculationService calculationService = new CalculationService();
+            
+            Produto produto = calculationService.Max(list);
+
+            Console.WriteLine("Mais caro: " + produto);
 
 
 
