@@ -644,15 +644,36 @@ namespace Course
             //Seção 13 - aula 151 - GetHashCode (rápido, resposta positiva não é 100%) e Equals (mais lento, resposta 100%)
             // Dica para muitas análises use o mais rápido, se der positivo testar com o equals para ter certeza.
 
-            Client2 a = new Client2 { Name = "Maria", Email = "maria@gmail.com" };
-            Client2 b = new Client2 { Name = "Alex", Email = "maria@gmail.com" };
 
-            Console.WriteLine(a.Equals(b)); //compara dentro do critero que eu sobrescrevi na classe, nesse caso olho o email
-            Console.WriteLine(a.GetHashCode()); //nesses caso deu igual pq é a mesma iteração.
-            Console.WriteLine(b.GetHashCode());
-            Console.WriteLine(a == b); //compara a refêrencia do ponteiro de alocação em memória do objeto
+            /* Client2 a = new Client2 { Name = "Maria", Email = "maria@gmail.com" };
+             Client2 b = new Client2 { Name = "Alex", Email = "maria@gmail.com" };
 
+             Console.WriteLine(a.Equals(b)); //compara dentro do critero que eu sobrescrevi na classe, nesse caso olho o email
+             Console.WriteLine(a.GetHashCode()); //nesses caso deu igual pq é a mesma iteração.
+             Console.WriteLine(b.GetHashCode());
+             Console.WriteLine(a == b); //compara a refêrencia do ponteiro de alocação em memória do objeto*/
 
+            //Seção 14 - aula 152 - HashSet e SortedSet
+
+            //Quando não admitir repetição de elementos no lugar de List eu uso um dos dois.
+            //Cunjunto não tem posição, diferente da lista e vetor.
+            //Acesso, remoção e iserção são rápidos.
+            //Oferece operações eficientes de conjunto (interseção, união de diferença)
+            //HashSet: Armazenamento em tabela hash, ordem dos elementos não é garantida. O(1) muito rápido, mais que o outro
+            //SortedSet: Armazenamento em árvore, os elementos são armazenados ordenadamente conforme implementação do IComparer. O(log(n)) é rápido mas o outro é mais
+
+            HashSet<string> set = new HashSet<string>();
+
+            set.Add("TV");
+            set.Add("Notebook");
+            set.Add("Tablet");
+
+            Console.WriteLine(set.Contains("Notebook"));
+
+            foreach(string p in set)
+            {
+                Console.WriteLine(p);
+            }
 
 
 
