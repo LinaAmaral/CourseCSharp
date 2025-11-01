@@ -662,6 +662,7 @@ namespace Course
             //HashSet: Armazenamento em tabela hash, ordem dos elementos não é garantida. O(1) muito rápido, mais que o outro
             //SortedSet: Armazenamento em árvore, os elementos são armazenados ordenadamente conforme implementação do IComparer. O(log(n)) é rápido mas o outro é mais
 
+            /*
             HashSet<string> set = new HashSet<string>();
 
             set.Add("TV");
@@ -670,24 +671,47 @@ namespace Course
 
             Console.WriteLine(set.Contains("Notebook"));
 
-            foreach(string p in set)
+            foreach (string p in set)
             {
                 Console.WriteLine(p);
             }
+            */
 
+            //Seção 14 - aula 153 - HashSet e SortedSet Parte 2
+            /*
+            SortedSet<int> a = new SortedSet<int>() { 0, 2, 4, 5, 6, 8, 10 };
+            SortedSet<int> b = new SortedSet<int>() { 5, 6, 7, 8, 9, 10 };
 
+            //union
+            SortedSet<int> c = new SortedSet<int>(a);
+            c.UnionWith(b);
+            PrintCollection(c); // como é sortedset sempre vai mostrar pra mim os elementos ordenados
 
+           //intersection
+            SortedSet<int> d = new SortedSet<int>(a);
+            d.IntersectWith(b);
+            PrintCollection(d);
 
+            //difference
+            SortedSet<int> e = new SortedSet<int>(a);
+            e.ExceptWith(b);
+            PrintCollection(e);
+            */
 
+        }
 
+        // faço uma funão auxiliar, para imprimir
+        // o tipo IEnumerable é nativo do C#, tenho o getEnumerator dentro dele que permite com que eu percorra a coleção
+        // é uma padrão de projetos para eu percorrer uma coleção de forma padronizada
 
-
-
-
-
-
-
-
+        //é uma coleção do tipo T que implementa o IEnumerable
+        static void PrintCollection<T>(IEnumerable<T> collection)
+        {
+            foreach (T obj in collection)
+            {
+                Console.Write(obj + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
