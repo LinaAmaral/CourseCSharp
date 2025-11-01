@@ -698,6 +698,33 @@ namespace Course
             PrintCollection(e);
             */
 
+            //Seção 14 - aula 154 - Como coleções Hash comparam igualdades
+
+
+            HashSet<Product3> a = new HashSet<Product3>();
+            a.Add(new Product3("TV", 900));
+            a.Add(new Product3("Notebook", 1200));
+
+            Product3 product3 = new Product3("Notebook", 1200);
+            Console.WriteLine(a.Contains(product3)); //false
+            //Embora o product3 seja igual a um produto dentro de a, o contains dá false porque ele não olha o valor, ele olha o hash, a alocação de memória
+            // isso porque o gethashcode e equals NAO está implementado, então ele compara a referencia dos objetos.
+            //mas se estiver implementado, caso de string, por exemplo, ele olha primeiro o gethashcode que é mais rápido e depois confirma com o equals.
+
+            //agora vou implementar o getHashCode e equals na classe product3 e tem que dar verdadeiro
+
+
+            HashSet<Point> b = new HashSet<Point>();
+            b.Add(new Point(3, 4));
+            b.Add(new Point(5, 10));
+
+            Point point = new Point(5, 10);
+            Console.WriteLine(b.Contains(point)); 
+            //true, aqui dá true, não precisa fazer o override porque é struct
+
+
+
+
         }
 
         // faço uma funão auxiliar, para imprimir
