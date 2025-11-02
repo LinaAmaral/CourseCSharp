@@ -677,7 +677,7 @@ namespace Course
             }
             */
 
-            //Seção 14 - aula 153 - HashSet e SortedSet Parte 2
+            //Seção 13 - aula 153 - HashSet e SortedSet Parte 2
             /*
             SortedSet<int> a = new SortedSet<int>() { 0, 2, 4, 5, 6, 8, 10 };
             SortedSet<int> b = new SortedSet<int>() { 5, 6, 7, 8, 9, 10 };
@@ -698,9 +698,9 @@ namespace Course
             PrintCollection(e);
             */
 
-            //Seção 14 - aula 154 - Como coleções Hash comparam igualdades
+            //Seção 13 - aula 154 - Como coleções Hash comparam igualdades
 
-
+            /*
             HashSet<Product3> a = new HashSet<Product3>();
             a.Add(new Product3("TV", 900));
             a.Add(new Product3("Notebook", 1200));
@@ -721,6 +721,36 @@ namespace Course
             Point point = new Point(5, 10);
             Console.WriteLine(b.Contains(point)); 
             //true, aqui dá true, não precisa fazer o override porque é struct
+            */
+
+            //Seção 13 - aual 155 - exercício de fixação
+
+            Console.Write(" Enter file full path: ");
+            string path = Console.ReadLine();
+
+            HashSet<LogRecord> set = new HashSet<LogRecord>();
+            //aqui eu uso o hashset pq a ordem não importa, então uso o mais rápido. caso contrário poderia usar o sortedset
+
+            try
+            {
+                using(StreamReader sr = File.OpenText(path)) //C:\EstudoProgramacao\c_sharp\log_alunos.txt
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] line = sr.ReadLine().Split(' ');
+                        string name = line[0];
+                        DateTime instant = DateTime.Parse(line[1]);
+                        set.Add(new LogRecord { Username = name, Instant = instant });
+                                              
+                    }
+                    Console.Write("Total: " + set.Count);
+                }
+            }catch(IOException ex)
+            {
+                Console.Write(ex.Message);
+            }
+
+
 
 
 
