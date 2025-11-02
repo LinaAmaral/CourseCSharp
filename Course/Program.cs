@@ -1,11 +1,12 @@
-﻿using System.Globalization;
+﻿using Course.Entities;
+using Course.Entities.Enums;
+using Course.Entities.Model;
+using Course.Services;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Security;
 using System.Security.Cryptography;
-using Course.Entities;
-using Course.Entities.Enums;
-using System.IO;
-using Course.Services;
-using Course.Entities.Model;
 
 
 namespace Course
@@ -723,8 +724,9 @@ namespace Course
             //true, aqui dá true, não precisa fazer o override porque é struct
             */
 
-            //Seção 13 - aual 155 - exercício de fixação
+            //Seção 13 - aula 155 - exercício de fixação
 
+            /*
             Console.Write(" Enter file full path: ");
             string path = Console.ReadLine();
 
@@ -749,10 +751,45 @@ namespace Course
             {
                 Console.Write(ex.Message);
             }
+            */
 
+            //Seção 13 - aula 156 - exercício proposto
 
+            HashSet<int> cursoA = new HashSet<int>();
+            Console.Write("Quantos alunos na turma A? ");
+            int a = int.Parse(Console.ReadLine());
+            for (int i = 0; i < a; i++)
+            {
+                int matricula = int.Parse(Console.ReadLine());
+                cursoA.Add(matricula);
+                
+            }
 
+            HashSet<int> cursoB = new HashSet<int>();
+            Console.Write("Quantos alunos na turma B? ");
+            int b = int.Parse(Console.ReadLine());
+            for (int i = 0; i < b; i++)
+            {
+                int matricula = int.Parse(Console.ReadLine());
+                cursoB.Add(matricula);
 
+            }
+
+            HashSet<int> cursoC = new HashSet<int>();
+            Console.Write("Quantos alunos na turma C? ");
+            int c = int.Parse(Console.ReadLine());
+            for (int i = 0; i < c; i++)
+            {
+                int matricula = int.Parse(Console.ReadLine());
+                cursoC.Add(matricula);
+
+            }
+
+            HashSet<int> totalAlunosAlex = new HashSet<int>(cursoA);
+            totalAlunosAlex.UnionWith(cursoB);
+            totalAlunosAlex.UnionWith(cursoC);
+
+            Console.WriteLine("Total " + totalAlunosAlex.Count);
 
 
         }
