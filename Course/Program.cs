@@ -5,6 +5,7 @@ using Course.Services;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Security;
 using System.Security.Cryptography;
 
@@ -755,6 +756,7 @@ namespace Course
 
             //Seção 13 - aula 156 - exercício proposto
 
+            /*
             HashSet<int> cursoA = new HashSet<int>();
             Console.Write("Quantos alunos na turma A? ");
             int a = int.Parse(Console.ReadLine());
@@ -790,6 +792,68 @@ namespace Course
             totalAlunosAlex.UnionWith(cursoC);
 
             Console.WriteLine("Total " + totalAlunosAlex.Count);
+            */
+
+            // Seção 13 - aula 157 - Dictionary e SortedDictionary
+            // Coleção de pares de chave e valor
+            //Sorted é organizado em árvore conforme o ICompared
+
+            /* Dictionary<string, string> cookies = new Dictionary<string, string>();
+             cookies["user"] = "maria";
+             cookies["email"] = "marial@gmail.com";
+             cookies["phone"] = "35998475412";
+
+             cookies.Remove("email");
+
+             if (cookies.ContainsKey("email"))
+             {
+                 Console.WriteLine(cookies["email"]);
+             }
+
+             Console.WriteLine(cookies.Count);
+
+             foreach (KeyValuePair<string, string> item in cookies)
+             {
+                 Console.WriteLine(item.Key + ": " + item.Value);
+             }*/
+
+            //Seção 13 - aula 158 - exercício proposto
+
+            Dictionary<string, int> votacao = new Dictionary<string, int>();
+
+            try
+            {
+                string path = "C:\\EstudoProgramacao\\c_sharp\\votos.txt";
+                using (StreamReader sr = File.OpenText(path)) 
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] line = sr.ReadLine().Split(',');
+                        string name = line[0];
+                        int voto = int.Parse(line[1]);
+                        if (votacao.ContainsKey(name))
+                        {
+                            votacao[name] += voto;
+                        }
+                        else
+                        {
+                            votacao[name] = voto;
+                        }
+
+                    }
+                    foreach (KeyValuePair<string, int> item in votacao)
+                    {
+                        Console.WriteLine(item.Key + ": " + item.Value);
+                    }
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.Write(ex.Message);
+            }
+
+
+
 
 
         }
