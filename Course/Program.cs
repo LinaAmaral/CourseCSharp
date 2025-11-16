@@ -819,39 +819,50 @@ namespace Course
 
             //Seção 13 - aula 158 - exercício proposto
 
-            Dictionary<string, int> votacao = new Dictionary<string, int>();
+            /* Dictionary<string, int> votacao = new Dictionary<string, int>();
 
-            try
-            {
-                string path = "C:\\EstudoProgramacao\\c_sharp\\votos.txt";
-                using (StreamReader sr = File.OpenText(path)) 
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        string[] line = sr.ReadLine().Split(',');
-                        string name = line[0];
-                        int voto = int.Parse(line[1]);
-                        if (votacao.ContainsKey(name))
-                        {
-                            votacao[name] += voto;
-                        }
-                        else
-                        {
-                            votacao[name] = voto;
-                        }
+             try
+             {
+                 string path = "C:\\EstudoProgramacao\\c_sharp\\votos.txt";
+                 using (StreamReader sr = File.OpenText(path)) 
+                 {
+                     while (!sr.EndOfStream)
+                     {
+                         string[] line = sr.ReadLine().Split(',');
+                         string name = line[0];
+                         int voto = int.Parse(line[1]);
+                         if (votacao.ContainsKey(name))
+                         {
+                             votacao[name] += voto;
+                         }
+                         else
+                         {
+                             votacao[name] = voto;
+                         }
 
-                    }
-                    foreach (KeyValuePair<string, int> item in votacao)
-                    {
-                        Console.WriteLine(item.Key + ": " + item.Value);
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                Console.Write(ex.Message);
-            }
+                     }
+                     foreach (KeyValuePair<string, int> item in votacao)
+                     {
+                         Console.WriteLine(item.Key + ": " + item.Value);
+                     }
+                 }
+             }
+             catch (IOException ex)
+             {
+                 Console.Write(ex.Message);
+             }*/
 
+
+            //Seção 14 - aula 161 - Extension methods
+
+            //São métodos que estendem a funcionalidade de um tipo, sem alterar ou herdar esse tipo
+
+            DateTime dt = new DateTime(2025, 11, 14, 8, 10, 45);
+            //Esse método não existe dentro da classe DateTIme, mas eu vou criar
+            Console.WriteLine(dt.ElapsedTime()); //não preciso passar nada, o this que recebo lá dentro é uma referencia ao próprio objeto
+
+            String st = "Good morning dear students!";
+            Console.Write(st.Cut(10));
 
 
 
