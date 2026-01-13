@@ -857,12 +857,44 @@ namespace Course
 
             //São métodos que estendem a funcionalidade de um tipo, sem alterar ou herdar esse tipo
 
-            DateTime dt = new DateTime(2025, 11, 14, 8, 10, 45);
+            /*DateTime dt = new DateTime(2025, 11, 14, 8, 10, 45);
             //Esse método não existe dentro da classe DateTIme, mas eu vou criar
             Console.WriteLine(dt.ElapsedTime()); //não preciso passar nada, o this que recebo lá dentro é uma referencia ao próprio objeto
 
             String st = "Good morning dear students!";
-            Console.Write(st.Cut(10));
+            Console.Write(st.Cut(10));*/
+
+            //Seçãp 15 - aula 163 Comparison
+            // Se eu uso IComparable na minha classe Product ela nai fica fechada para alteração, caso eu precise mudar o tipo de comparação, por exemplo.
+            // Existe a opção de eu usar uma sobrecarga do Sort para resolver Sort(Comparison<T> comparison)
+            //public delegate int Comparison<in T>(T x, T y);
+
+            List<Product> list = new List<Product>();
+
+            list.Add(new Product("TV", 900));
+            list.Add(new Product("Notebook", 1200));
+            list.Add(new Product("Table", 450));
+
+            // escolho a carga do sort que recebe um Comparison
+           /*     static int CompareProducts(Product p1, Product p2)
+                {
+                    return p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
+                }
+                Comparison<Product> comp = CompareProducts;
+                list.Sort(comp);*/
+
+           //Posso simplificar isso com uma expressão lambda
+            list.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
+
+            //Agora eu posso ter diferentes formas de ordenar, posso fazer um pelo preço, por exemplo.
+            foreach (Product p in list)
+            {
+                Console.WriteLine(p);
+            }
+
+
+
+
 
 
 
