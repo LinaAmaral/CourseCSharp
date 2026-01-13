@@ -15,6 +15,17 @@ Esse repositório é para armazenar os códigos e anotações das aulas, ativade
 
 -> Trabalhando com arquivos;
 
-...continuar depois de concluir
+-> Interfaces;
+
+-> Generics, Set, Dictionary;
+
+-> Tópicos especiais em C# ( Extension methods);
+
+-> Expressões lambda, delegates, LINQ;
+
+-> Bônus: nivelamento Git e GitHub;
+
+-> Bônus: Projeto Sistema de jogo de xadrez;
+
 
 
