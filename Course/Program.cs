@@ -8,10 +8,12 @@ using System.IO;
 using System.Net;
 using System.Security;
 using System.Security.Cryptography;
+using System;
 
 
 namespace Course
 {
+    delegate double BinaryNumericOperation(double n1, double n2);
     class Program
     {
         static void Main(string[] args)
@@ -869,28 +871,39 @@ namespace Course
             // Existe a opção de eu usar uma sobrecarga do Sort para resolver Sort(Comparison<T> comparison)
             //public delegate int Comparison<in T>(T x, T y);
 
-            List<Product> list = new List<Product>();
+            /* List<Product> list = new List<Product>();
 
-            list.Add(new Product("TV", 900));
-            list.Add(new Product("Notebook", 1200));
-            list.Add(new Product("Table", 450));
+             list.Add(new Product("TV", 900));
+             list.Add(new Product("Notebook", 1200));
+             list.Add(new Product("Table", 450));
 
-            // escolho a carga do sort que recebe um Comparison
-           /*     static int CompareProducts(Product p1, Product p2)
-                {
-                    return p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
-                }
-                Comparison<Product> comp = CompareProducts;
-                list.Sort(comp);*/
+             // escolho a carga do sort que recebe um Comparison
+             static int CompareProducts(Product p1, Product p2)
+             {
+                 return p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
+             }
+             Comparison<Product> comp = CompareProducts;
+             list.Sort(comp);
 
-           //Posso simplificar isso com uma expressão lambda
-            list.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
+             //Posso simplificar isso com uma expressão lambda
+             list.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
 
-            //Agora eu posso ter diferentes formas de ordenar, posso fazer um pelo preço, por exemplo.
-            foreach (Product p in list)
-            {
-                Console.WriteLine(p);
-            }
+             //Agora eu posso ter diferentes formas de ordenar, posso fazer um pelo preço, por exemplo.
+             foreach (Product p in list)
+             {
+                 Console.WriteLine(p);
+             }*/
+
+            //Seção 15 - aula 164 - Programação funcional e cálculo lambda
+
+            double a = 10;
+            double b = 12;
+
+            // double result = CalculationService2.Sum(a, b);
+            // ao invés de chamar o serviço, possi chamar o delegate, uma função que recebe outra como parâmetro.s
+            BinaryNumericOperation op = CalculationService2.Sum;
+            Console.WriteLine(op(a,b));
+
 
 
 
