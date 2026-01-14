@@ -924,7 +924,7 @@ namespace Course
             // Seção 15 - Action - aula 168
             // O forEach espera um Action, uma função do tipo void
 
-            List<Product> list = new List<Product>();
+            /*List<Product> list = new List<Product>();
             list.Add(new Product("Tv", 900.00));
             list.Add(new Product("Mouse", 50.00));
             list.Add(new Product("Tablet", 350.50));
@@ -935,7 +935,23 @@ namespace Course
             foreach(Product p in list)
             {
                 Console.WriteLine(p);
+            }*/
+
+            //Seção 15 - Func - aula 169 - diferença do action é que esse retorna um valor
+
+            List<Product> list = new List<Product>();
+            list.Add(new Product("Tv", 900.00));
+            list.Add(new Product("Mouse", 50.00));
+            list.Add(new Product("Tablet", 350.50));
+            list.Add(new Product("HD Case", 80.90));
+
+            List<string> result = list.Select(p => p.Name.ToUpper()).ToList();
+
+            foreach (string s in result)
+            {
+                Console.WriteLine(s);
             }
+
 
 
 
