@@ -9,6 +9,7 @@ using System.Net;
 using System.Security;
 using System.Security.Cryptography;
 using System;
+using System.ComponentModel;
 
 
 namespace Course
@@ -908,19 +909,33 @@ namespace Course
             //Seção 15 - aula 167 - Predicate
             // Nesse caso sempre volta um booleano
 
-           /* List<Product> list = new List<Product>();
+            /* List<Product> list = new List<Product>();
+             list.Add(new Product("Tv", 900.00));
+             list.Add(new Product("Mouse", 50.00));
+             list.Add(new Product("Tablet", 350.50));
+             list.Add(new Product("HD Case", 80.90));
+
+             list.RemoveAll(p => p.Price >= 100.0);//espera um predicate
+             foreach (Product p in list)
+             {
+                 Console.WriteLine(p);
+             }*/
+
+            // Seção 15 - Action - aula 168
+            // O forEach espera um Action, uma função do tipo void
+
+            List<Product> list = new List<Product>();
             list.Add(new Product("Tv", 900.00));
             list.Add(new Product("Mouse", 50.00));
             list.Add(new Product("Tablet", 350.50));
             list.Add(new Product("HD Case", 80.90));
 
-            list.RemoveAll(p => p.Price >= 100.0);//espera um predicate
-            foreach (Product p in list)
+            list.ForEach(p => { p.Price += p.Price * 0.1; });
+
+            foreach(Product p in list)
             {
                 Console.WriteLine(p);
-            }*/
-
-
+            }
 
 
 
