@@ -894,15 +894,32 @@ namespace Course
                  Console.WriteLine(p);
              }*/
 
-            //Seção 15 - aula 164 - Programação funcional e cálculo lambda
+            //Seção 15 - aula 164 - Programação funcional e cálculo lambda, Multicast delegate
 
-            double a = 10;
+            /*double a = 10;
             double b = 12;
 
             // double result = CalculationService2.Sum(a, b);
             // ao invés de chamar o serviço, possi chamar o delegate, uma função que recebe outra como parâmetro.s
+            // op += CalculationService.ShowMax; posso usar multicast, fazendo com que várias funções sejam executadas em sequencia. Faz sentido para método void.
             BinaryNumericOperation op = CalculationService2.Sum;
-            Console.WriteLine(op(a,b));
+            Console.WriteLine(op(a,b));*/
+
+            //Seção 15 - aula 167 - Predicate
+            // Nesse caso sempre volta um booleano
+
+           /* List<Product> list = new List<Product>();
+            list.Add(new Product("Tv", 900.00));
+            list.Add(new Product("Mouse", 50.00));
+            list.Add(new Product("Tablet", 350.50));
+            list.Add(new Product("HD Case", 80.90));
+
+            list.RemoveAll(p => p.Price >= 100.0);//espera um predicate
+            foreach (Product p in list)
+            {
+                Console.WriteLine(p);
+            }*/
+
 
 
 
