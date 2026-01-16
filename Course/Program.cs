@@ -939,18 +939,36 @@ namespace Course
 
             //Seção 15 - Func - aula 169 - diferença do action é que esse retorna um valor
 
-            List<Product> list = new List<Product>();
-            list.Add(new Product("Tv", 900.00));
-            list.Add(new Product("Mouse", 50.00));
-            list.Add(new Product("Tablet", 350.50));
-            list.Add(new Product("HD Case", 80.90));
+            /* List<Product> list = new List<Product>();
+             list.Add(new Product("Tv", 900.00));
+             list.Add(new Product("Mouse", 50.00));
+             list.Add(new Product("Tablet", 350.50));
+             list.Add(new Product("HD Case", 80.90));
 
-            List<string> result = list.Select(p => p.Name.ToUpper()).ToList();
+             List<string> result = list.Select(p => p.Name.ToUpper()).ToList();
 
-            foreach (string s in result)
+             foreach (string s in result)
+             {
+                 Console.WriteLine(s);
+             }*/
+
+            //Seção 15 - LINQ - aula171
+            // suporte para escrever query
+            // sintaxe similar a sql 
+
+            //1 - especificar o data source
+            int[] numbers = new int[] { 1, 2, 3, 4, 5 };
+
+            //2 - definir a query expression (consulta)
+            IEnumerable<int> result = numbers.Where(x => x % 2 == 0).Select(x => x * 10);
+
+            //3 - executar minha consulta
+            foreach(int x in result)
             {
-                Console.WriteLine(s);
+                Console.WriteLine(x);
             }
+
+
 
 
 
