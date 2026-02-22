@@ -957,7 +957,7 @@ namespace Course
             // sintaxe similar a sql 
 
             //1 - especificar o data source
-            int[] numbers = new int[] { 1, 2, 3, 4, 5 };
+            /*int[] numbers = new int[] { 1, 2, 3, 4, 5 };
 
             //2 - definir a query expression (consulta)
             IEnumerable<int> result = numbers.Where(x => x % 2 == 0).Select(x => x * 10);
@@ -966,16 +966,58 @@ namespace Course
             foreach(int x in result)
             {
                 Console.WriteLine(x);
-            }
+            }*/
 
+            //Seção 15 - aula 173
 
+            Category c1 = new Category() { Id = 1, Name = "Tools", Tier = 2 };
+            Category c2 = new Category() { Id = 2, Name = "Computers", Tier = 1 };
+            Category c3 = new Category() { Id = 3, Name = "Electronics", Tier = 1 };
 
+            List<Product4> products = new List<Product4>() {
+                new Product4() { Id = 1, Name = "Computer", Price = 1100.0, Category = c2 },
+                new Product4() { Id = 2, Name = "Hammer", Price = 90.0, Category = c1 },
+                new Product4() { Id = 3, Name = "TV", Price = 1700.0, Category = c3 },
+                new Product4() { Id = 4, Name = "Notebook", Price = 1300.0, Category = c2 },
+                new Product4() { Id = 5, Name = "Saw", Price = 80.0, Category = c1 },
+                new Product4() { Id = 6, Name = "Tablet", Price = 700.0, Category = c2 },
+                new Product4() { Id = 7, Name = "Camera", Price = 700.0, Category = c3 },
+                new Product4() { Id = 8, Name = "Printer", Price = 350.0, Category = c3 },
+                new Product4() { Id = 9, Name = "MacBook", Price = 1800.0, Category = c2 },
+                new Product4() { Id = 10, Name = "Sound Bar", Price = 700.0, Category = c3 },
+                new Product4() { Id = 11, Name = "Level", Price = 70.0, Category = c1 }
+            };
 
+            //para filtar -> where
 
+            var r1 = products.Where(p => p.Category.Tier == 1 && p.Price < 900);
+            Print("Tier 1 e Price < 900: ", r1);
 
+            var r2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
+            Print("Somente Tools na Categoria", r2);
 
+            //crio um objeto anonimo, uma entidade que não existe no projeto, que vai carregar só esses três dados que quero no select
+            // preciso criar esse alias CategoryName porque ficaria com dois Name e o compilador reclama.
+            var r3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name });
+            Print("Somente  produtos começados em C e objeto anônimo", r3);
 
+            var r4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
+            Print("Categoria 1 ordenados por preço e nome", r4);
 
+            var r5 = r4.Skip(2).Take(4);
+            Print("Skip os dois primeiros elementso e pegue os 4 seguintes", r5);
+
+            var r6 = products.First();
+            Console.WriteLine("Primeiro elemento: " + r6);
+
+            // Se eu aplicar o First em uma coleção vazia dá uma excessão. Por isso uso o default, por dá nulo e ele volta vazio
+            var r7 = products.Where(p => p.Price > 3000).FirstOrDefault();
+            Console.WriteLine("Produtos maiores que 3000: " + r7);
+
+            // só posso usar quando tenho a garantia que retorna apenas 1 elemento
+            // se não uso o single eu tenho uma coleção, se uso eu tenho produto, é uma forma de controlar o tipo do retorno
+            var r8 = products.Where(p => p.Id == 3).SingleOrDefault();
+            Console.WriteLine("Single or default: " + r8);
 
 
         }
@@ -990,6 +1032,16 @@ namespace Course
             foreach (T obj in collection)
             {
                 Console.Write(obj + " ");
+            }
+            Console.WriteLine();
+        }
+
+        static void Print<T>(string message, IEnumerable<T> collection)
+        {
+            Console.WriteLine(message);
+            foreach (T obj in collection)
+            {
+                Console.WriteLine(obj);
             }
             Console.WriteLine();
         }
