@@ -975,49 +975,103 @@ namespace Course
             Category c3 = new Category() { Id = 3, Name = "Electronics", Tier = 1 };
 
             List<Product4> products = new List<Product4>() {
-                new Product4() { Id = 1, Name = "Computer", Price = 1100.0, Category = c2 },
-                new Product4() { Id = 2, Name = "Hammer", Price = 90.0, Category = c1 },
-                new Product4() { Id = 3, Name = "TV", Price = 1700.0, Category = c3 },
-                new Product4() { Id = 4, Name = "Notebook", Price = 1300.0, Category = c2 },
-                new Product4() { Id = 5, Name = "Saw", Price = 80.0, Category = c1 },
-                new Product4() { Id = 6, Name = "Tablet", Price = 700.0, Category = c2 },
-                new Product4() { Id = 7, Name = "Camera", Price = 700.0, Category = c3 },
-                new Product4() { Id = 8, Name = "Printer", Price = 350.0, Category = c3 },
-                new Product4() { Id = 9, Name = "MacBook", Price = 1800.0, Category = c2 },
-                new Product4() { Id = 10, Name = "Sound Bar", Price = 700.0, Category = c3 },
-                new Product4() { Id = 11, Name = "Level", Price = 70.0, Category = c1 }
-            };
+                 new Product4() { Id = 1, Name = "Computer", Price = 1100.0, Category = c2 },
+                 new Product4() { Id = 2, Name = "Hammer", Price = 90.0, Category = c1 },
+                 new Product4() { Id = 3, Name = "TV", Price = 1700.0, Category = c3 },
+                 new Product4() { Id = 4, Name = "Notebook", Price = 1300.0, Category = c2 },
+                 new Product4() { Id = 5, Name = "Saw", Price = 80.0, Category = c1 },
+                 new Product4() { Id = 6, Name = "Tablet", Price = 700.0, Category = c2 },
+                 new Product4() { Id = 7, Name = "Camera", Price = 700.0, Category = c3 },
+                 new Product4() { Id = 8, Name = "Printer", Price = 350.0, Category = c3 },
+                 new Product4() { Id = 9, Name = "MacBook", Price = 1800.0, Category = c2 },
+                 new Product4() { Id = 10, Name = "Sound Bar", Price = 700.0, Category = c3 },
+                 new Product4() { Id = 11, Name = "Level", Price = 70.0, Category = c1 }
+             };
 
             //para filtar -> where
 
             var r1 = products.Where(p => p.Category.Tier == 1 && p.Price < 900);
+            var r1a = from p in products where p.Category.Tier == 1 && p.Price < 900.0 select p;
             Print("Tier 1 e Price < 900: ", r1);
+            Print("Tier 1 e Price < 900: ", r1a);
 
             var r2 = products.Where(p => p.Category.Name == "Tools").Select(p => p.Name);
+            var r2a = from p in products where p.Category.Name == "Tools" select p.Name;
             Print("Somente Tools na Categoria", r2);
+            Print("Somente Tools na Categoria", r2a);
 
             //crio um objeto anonimo, uma entidade que não existe no projeto, que vai carregar só esses três dados que quero no select
             // preciso criar esse alias CategoryName porque ficaria com dois Name e o compilador reclama.
             var r3 = products.Where(p => p.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name });
+            var r3a = from p in products where p.Name[0] == 'C' select new { p.Name, p.Price, CategoryName = p.Category.Name };
             Print("Somente  produtos começados em C e objeto anônimo", r3);
+            Print("Somente  produtos começados em C e objeto anônimo", r3a);
 
             var r4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name);
+            var r4a = from p in products where p.Category.Tier == 1 orderby p.Name orderby p.Price select p;
             Print("Categoria 1 ordenados por preço e nome", r4);
+            Print("Categoria 1 ordenados por preço e nome", r4a);
 
             var r5 = r4.Skip(2).Take(4);
+            var r5a = (from p in r4a select p).Skip(2).Take(4);
             Print("Skip os dois primeiros elementso e pegue os 4 seguintes", r5);
+            Print("Skip os dois primeiros elementso e pegue os 4 seguintes", r5a);
 
             var r6 = products.First();
+            var r6a = (from p in products select p).FirstOrDefault();
             Console.WriteLine("Primeiro elemento: " + r6);
+            Console.WriteLine("Primeiro elemento: " + r6a);
 
             // Se eu aplicar o First em uma coleção vazia dá uma excessão. Por isso uso o default, por dá nulo e ele volta vazio
             var r7 = products.Where(p => p.Price > 3000).FirstOrDefault();
+            var r7a = (from p in products where p.Price > 3000 select p).FirstOrDefault();
             Console.WriteLine("Produtos maiores que 3000: " + r7);
+            Console.WriteLine("Produtos maiores que 3000: " + r7a);
 
             // só posso usar quando tenho a garantia que retorna apenas 1 elemento
             // se não uso o single eu tenho uma coleção, se uso eu tenho produto, é uma forma de controlar o tipo do retorno
             var r8 = products.Where(p => p.Id == 3).SingleOrDefault();
             Console.WriteLine("Single or default: " + r8);
+
+            var r10 = products.Max(p => p.Price);
+            Console.WriteLine("Max Price: " + r10);
+
+            var r11 = products.Min(p => p.Price);
+            Console.WriteLine("Min Price: " + r11);
+
+            var r12 = products.Where(p => p.Category.Id == 1).Sum(p => p.Price);
+            Console.WriteLine("Soma dos produtos categoria 1: " + r12);
+
+            var r13 = products.Where(p => p.Category.Id == 1).Average(p => p.Price);
+            Console.WriteLine("Média dos produtos categoria 1: " + r13);
+
+            //se essa lista for vazia vai dar excessão porque não existe divisão por zero.
+            //o macete é verificar: pego só os preços, se for default coloco zero, depois pego a média disso.
+            var r14 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+            Console.WriteLine("Média dos produtos categoria 5 (não existe): " + r14);
+
+            //Usando o aggregate, também conhecido como reduce em algumas linguagens
+            var r15 = products.Where(p => p.Category.Id == 1).Select(p => p.Price).Aggregate((x, y) => x + y);
+            Console.WriteLine("Soma por aggregação (soma personalizada, ou reduce): " + r15);
+
+            //tratativa para quando der uma lista vazia, usar uma sobrecarga do Aggregate cju valor inicial é 0
+            var r151 = products.Where(p => p.Category.Id == 5).Select(p => p.Price).Aggregate(0.0, (x, y) => x + y);
+            Console.WriteLine("Soma por aggregação (soma personalizada, ou reduce): " + r151);
+
+            var r16 = products.GroupBy(p => p.Category);
+            var r16a = from p in products group p by p.Category;
+            foreach (IGrouping<Category, Product4> group in r16)
+            {
+                Console.WriteLine("Categoria" + group.Key.Name + ": ");
+                foreach (Product4 p in group)
+                {
+                    Console.WriteLine(p);
+                }
+                Console.WriteLine();
+            }
+
+
+
 
 
         }
