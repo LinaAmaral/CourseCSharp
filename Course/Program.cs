@@ -1070,12 +1070,36 @@ namespace Course
                 Console.WriteLine();
             }*/
 
-            //Seção 15 - aula 178 - exercício de fixação
+            //Seção 15 - aula 177 - exercício resolvido
 
             //Console.Write("Entre com o caminho do arquivo: ");
-            string path = @"C:\EstudoProgramacao\c_sharp\in.txt";
+            /*            string path = @"C:\EstudoProgramacao\c_sharp\in.txt";
 
-            List<Product> list = new List<Product>();
+                        List<Product> list = new List<Product>();
+
+                        using (StreamReader sr = File.OpenText(path))
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                string[] fields = sr.ReadLine().Split(',');
+                                string name = fields[0];
+                                double price = double.Parse(fields[1], CultureInfo.InvariantCulture);
+                                list.Add(new Product(name, price));
+                            }
+                        }
+
+                        var avg = list.Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+                        Console.WriteLine("A média de preços desses produtos é: " + avg.ToString("F2", CultureInfo.InvariantCulture));
+
+                        var names = list.Where(p => p.Price < avg).OrderByDescending(p => p.Name).Select(p => p.Name);
+                        foreach(string name in names)
+                        {
+                            Console.WriteLine(name);
+                        }*/
+
+            //Seção 15 - aula 178 - exercício de fixação
+            /*string path = @"C:\EstudoProgramacao\c_sharp\funcionarios.txt";
+            List<Funcionario2> list = new List<Funcionario2>();
 
             using (StreamReader sr = File.OpenText(path))
             {
@@ -1083,19 +1107,25 @@ namespace Course
                 {
                     string[] fields = sr.ReadLine().Split(',');
                     string name = fields[0];
-                    double price = double.Parse(fields[1], CultureInfo.InvariantCulture);
-                    list.Add(new Product(name, price));
+                    string email = fields[1];
+                    double salario = double.Parse(fields[2], CultureInfo.InvariantCulture);
+                    list.Add(new Funcionario2(name, email, salario));
                 }
             }
 
-            var avg = list.Select(p => p.Price).DefaultIfEmpty(0.0).Average();
-            Console.WriteLine("A média de preços desses produtos é: " + avg.ToString("F2", CultureInfo.InvariantCulture));
+            Console.Write("Entre com o salário: ");
+            double valor = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            var names = list.Where(p => p.Price < avg).OrderByDescending(p => p.Name).Select(p => p.Name);
-            foreach(string name in names)
+            var emails = list.Where(p => p.Salario > valor).OrderBy(p => p.Email).Select(p => p.Email);
+            foreach (string email in emails)
             {
-                Console.WriteLine(name);
+                Console.WriteLine(email);
             }
+
+            var soma = list.Where(p => p.Nome[0] == 'M').Sum(p => p.Salario);
+            Console.Write("Soma salario das pessoas que começa com M: " + soma.ToString("F2", CultureInfo.InvariantCulture));
+            */
+
 
         }
 
