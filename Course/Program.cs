@@ -970,7 +970,7 @@ namespace Course
 
             //Seção 15 - aula 173
 
-            Category c1 = new Category() { Id = 1, Name = "Tools", Tier = 2 };
+            /*Category c1 = new Category() { Id = 1, Name = "Tools", Tier = 2 };
             Category c2 = new Category() { Id = 2, Name = "Computers", Tier = 1 };
             Category c3 = new Category() { Id = 3, Name = "Electronics", Tier = 1 };
 
@@ -1068,11 +1068,34 @@ namespace Course
                     Console.WriteLine(p);
                 }
                 Console.WriteLine();
+            }*/
+
+            //Seção 15 - aula 178 - exercício de fixação
+
+            //Console.Write("Entre com o caminho do arquivo: ");
+            string path = @"C:\EstudoProgramacao\c_sharp\in.txt";
+
+            List<Product> list = new List<Product>();
+
+            using (StreamReader sr = File.OpenText(path))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string[] fields = sr.ReadLine().Split(',');
+                    string name = fields[0];
+                    double price = double.Parse(fields[1], CultureInfo.InvariantCulture);
+                    list.Add(new Product(name, price));
+                }
             }
 
+            var avg = list.Select(p => p.Price).DefaultIfEmpty(0.0).Average();
+            Console.WriteLine("A média de preços desses produtos é: " + avg.ToString("F2", CultureInfo.InvariantCulture));
 
-
-
+            var names = list.Where(p => p.Price < avg).OrderByDescending(p => p.Name).Select(p => p.Name);
+            foreach(string name in names)
+            {
+                Console.WriteLine(name);
+            }
 
         }
 
